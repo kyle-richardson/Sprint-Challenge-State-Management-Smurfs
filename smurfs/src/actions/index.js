@@ -10,12 +10,17 @@ export const REFRESH_LIST = 'REFRESH_LIST'
 export const ADD_SMURF_FAILURE = 'ADD_SMURF_FAILURE'
 export const ADD_SMURF_START = 'ADD_SMURF_START'
 export const ADD_SMURF_SUCCESS = 'ADD_SMURF_SUCCESS'
+export const DELETE_SMURF_START = 'DELETE_SMURF_START'
+export const DELETE_SMURF_FAILURE = 'DELETE_SMURF_FAILURE'
+export const DELETE_SMURF_SUCCESS = 'DELETE_SMURF_SUCCESS'
+export const EDIT_SMURF_START = 'EDIT_SMURF_START'
+export const EDIT_SMURF_FAILURE = 'EDIT_SMURF_FAILURE'
+export const EDIT_SMURF_SUCCESS = 'EDIT_SMURF_SUCCESS'
 
 export const getList = () => dispatch => {
-    console.log("start get List")
     dispatch({ type: FETCH_LIST_START });
     axios
-      .get('localhost:3333/smurfs')
+      .get('http://localhost:3333/smurfs')
       .then(res => {
         console.log(res)
         dispatch({ type: FETCH_LIST_SUCCESS, payload: res.data})
@@ -23,18 +28,20 @@ export const getList = () => dispatch => {
       .catch(err => dispatch({ type: FETCH_LIST_FAIL, payload: err }));
   };
 
-export const addSmurf = () => dispatch => {
-  const newSmurf = {
-      name: 'Kyle',
-      age: 200,
-      height: '10cm'
-  }
+export const addSmurf = event => dispatch => {
+  event.preventDefault()
+  
   dispatch({ type: ADD_SMURF_START });
+  const newSmurf = {
+    name: event.target[0].value,
+    age: event.target[1].value,
+    height: event.target[2].value
+}
     axios
-      .post('localhost:3333/smurfs', newSmurf)
+      .post('http://localhost:3333/smurfs', newSmurf)
       .then(res=>{
         console.log(res)
-        dispatch({type: ADD_SMURF_SUCCESS})
+        dispatch({type: ADD_SMURF_SUCCESS, payload: res.data})
       })
       .catch(err => dispatch({ type: ADD_SMURF_FAILURE, payload: err }));
   };
@@ -52,3 +59,29 @@ export const handleChange = event => ({
 export const refreshList = ()=> ({
     type: REFRESH_LIST
 })
+
+export const handleDelete = event => dispatch => {
+  dispatch({ type: DELETE_SMURF_START });
+  axios
+    .delete(`http://localhost:3333/smurfs/${event.target.name}`)
+    .then(res => {
+      console.log(res)
+      dispatch({ type: DELETE_SMURF_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({ type: DELETE_SMURF_FAILURE, payload: err }));
+};
+
+export const handleEdit = event => dispatch => {
+  dispatch({ type: EDIT_SMURF_START });
+  const changed = {
+    id: event.target.id,
+    [event.target.name]: event.target.value
+  }
+  axios
+    .put(`http://localhost:3333/smurfs/${event.target.name}`, changed)
+    .then(res => {
+      console.log(res)
+      dispatch({ type: EDIT_SMURF_SUCCESS, payload: res.data})
+    })
+    .catch(err => dispatch({ type: EDIT_SMURF_FAILURE, payload: err }));
+};

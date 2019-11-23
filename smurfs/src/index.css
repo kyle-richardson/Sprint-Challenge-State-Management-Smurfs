@@ -3,3 +3,17 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.list.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.single-smurf {
+  background: rgb(22, 22, 192);
+  color: white;
+  padding: 10px;
+  width: 150px;
+  height: 150px;
+  margin: 10px auto;
+}

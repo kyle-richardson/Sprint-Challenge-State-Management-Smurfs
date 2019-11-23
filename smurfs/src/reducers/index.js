@@ -6,14 +6,23 @@ import { HANDLE_SEARCH,
     REFRESH_LIST,
     ADD_SMURF_FAILURE,
     ADD_SMURF_START,
-    ADD_SMURF_SUCCESS} 
+    ADD_SMURF_SUCCESS,
+    DELETE_SMURF_FAILURE,
+    DELETE_SMURF_SUCCESS,
+    DELETE_SMURF_START,
+    EDIT_SMURF_FAILURE,
+    EDIT_SMURF_SUCCESS,
+    EDIT_SMURF_START} 
 from "../actions"
 
 const initialState = {
     smurfList: [],
     isFetching: false,
     error: '',
-    isAdding: false
+    isAdding: false,
+    isEditing: false,
+    isDeleting: false,
+    newSmurf: {}
 
 }
 
@@ -44,7 +53,8 @@ switch (type) {
     case ADD_SMURF_SUCCESS:
         return {
             ...state,
-            isAdding: false
+            isAdding: false,
+            smurfList: payload
         }
     case ADD_SMURF_FAILURE:
         return {
@@ -59,10 +69,43 @@ switch (type) {
     case HANDLE_CHANGE:
         return {
             ...state,
+            [payload.name]: payload.value
            }
     case REFRESH_LIST:
         return {
             ...state,
+        }
+    case DELETE_SMURF_START:
+        return {
+            ...state,
+            isDeleting: true,
+        }
+    case DELETE_SMURF_FAILURE:
+        return {
+            ...state,
+            isDeleting: false,
+            error: payload
+        }
+    case DELETE_SMURF_SUCCESS:
+        return {
+            ...state,
+            isDeleting: false,
+        }
+    case EDIT_SMURF_START:
+        return {
+            ...state,
+            isEditing: true,
+        }
+    case EDIT_SMURF_FAILURE:
+        return {
+            ...state,
+            isEditing: false,
+            error: payload
+        }
+    case EDIT_SMURF_SUCCESS:
+        return {
+            ...state,
+            isEditing: false,
         }
     default: 
         return state
