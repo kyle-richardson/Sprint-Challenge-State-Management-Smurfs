@@ -61,9 +61,11 @@ export const refreshList = ()=> ({
 })
 
 export const handleDelete = event => dispatch => {
+  console.log(event.target)
+  const id = event.target.getAttribute('name')
   dispatch({ type: DELETE_SMURF_START });
   axios
-    .delete(`http://localhost:3333/smurfs/${event.target.name}`)
+    .delete(`http://localhost:3333/smurfs/${id}`)
     .then(res => {
       console.log(res)
       dispatch({ type: DELETE_SMURF_SUCCESS, payload: res.data})
@@ -71,14 +73,21 @@ export const handleDelete = event => dispatch => {
     .catch(err => dispatch({ type: DELETE_SMURF_FAILURE, payload: err }));
 };
 
+export const startEdit = event => ({
+  type: EDIT_SMURF_START,
+  payload: event.target.getAttribute('name')
+})
+
 export const handleEdit = event => dispatch => {
-  dispatch({ type: EDIT_SMURF_START });
+  event.preventDefault()
+  const id = event.target.getAttribute('name')
   const changed = {
-    id: event.target.id,
-    [event.target.name]: event.target.value
+    name: event.target[0].value,
+    age: event.target[1].value,
+    height: event.target[2].value
   }
   axios
-    .put(`http://localhost:3333/smurfs/${event.target.name}`, changed)
+    .put(`http://localhost:3333/smurfs/${id}`, changed)
     .then(res => {
       console.log(res)
       dispatch({ type: EDIT_SMURF_SUCCESS, payload: res.data})

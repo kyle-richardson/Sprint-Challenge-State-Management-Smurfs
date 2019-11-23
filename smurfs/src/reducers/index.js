@@ -22,7 +22,8 @@ const initialState = {
     isAdding: false,
     isEditing: false,
     isDeleting: false,
-    newSmurf: {}
+    newSmurf: {},
+    editSmurf: {}
 
 }
 
@@ -90,11 +91,13 @@ switch (type) {
         return {
             ...state,
             isDeleting: false,
+            smurfList: payload
         }
     case EDIT_SMURF_START:
         return {
             ...state,
             isEditing: true,
+            editSmurf: state.smurfList.find(ele=> ele.id.toString()===`${payload}`)
         }
     case EDIT_SMURF_FAILURE:
         return {

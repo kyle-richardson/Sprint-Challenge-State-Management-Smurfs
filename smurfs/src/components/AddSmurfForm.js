@@ -19,7 +19,7 @@ const AddSmurfForm = ({addSmurf, newSmurf, handleChange}) => {
                 <input 
                     className="age-box"
                     type="text"
-                    placeholder="age"
+                    placeholder="Age"
                     name="age"
                     value={newSmurf.age}
                     onChange={handleChange}
@@ -27,7 +27,7 @@ const AddSmurfForm = ({addSmurf, newSmurf, handleChange}) => {
                 <input 
                     className="height-box"
                     type="text"
-                    placeholder="height"
+                    placeholder="Height"
                     name="height"
                     value={newSmurf.height}
                     onChange={handleChange}
