@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import Start from "./Start"
 import List from "./List"
+import {Route} from "react-router-dom"
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
         <Route exact path="/" component={Start} />
-        <Route exact path="/smurfs" component={List}/>
+        <Route exact path="/list" component={List}/>
       </div>
     );
   }

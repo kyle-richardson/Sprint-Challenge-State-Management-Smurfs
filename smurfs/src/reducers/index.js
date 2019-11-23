@@ -3,13 +3,17 @@ import { HANDLE_SEARCH,
     FETCH_LIST_FAIL, 
     FETCH_LIST_SUCCESS, 
     FETCH_LIST_START, 
-    REFRESH_LIST} 
+    REFRESH_LIST,
+    ADD_SMURF_FAILURE,
+    ADD_SMURF_START,
+    ADD_SMURF_SUCCESS} 
 from "../actions"
 
 const initialState = {
     smurfList: [],
     isFetching: false,
     error: '',
+    isAdding: false
 
 }
 
@@ -31,6 +35,22 @@ switch (type) {
         return {
             ...state,
             smurfList: payload
+        }
+    case ADD_SMURF_START:
+        return {
+            ...state,
+            isAdding: true
+        }
+    case ADD_SMURF_SUCCESS:
+        return {
+            ...state,
+            isAdding: false
+        }
+    case ADD_SMURF_FAILURE:
+        return {
+            ...state,
+            error: payload,
+            isAdding: false
         }
     case HANDLE_SEARCH:
         return {

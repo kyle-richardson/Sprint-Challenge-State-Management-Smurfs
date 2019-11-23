@@ -6,8 +6,8 @@ const Start = () => {
         <div className="start-container">
             <h1>Smurf!! Gotta love em.</h1>
             <p>Get started here</p>
-            <Link to="/smurfs">
-                <div className="start-button">Get Rates!</div>
+            <Link to="/list">
+                <div className="start-button">Get Smurf List!</div>
             </Link>
         </div>
         
