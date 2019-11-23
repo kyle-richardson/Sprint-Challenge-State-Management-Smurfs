@@ -19,11 +19,15 @@ const List = ({smurfList, getList}) => {
 
     return(
         <div className="list-container">
-            {smurfList.map(smurf=> {
-                return (
-                    <Smurf key={smurf.id} smurf={smurf}/>
-                )
-            })}
+            <h2>Smurfs currently on your island</h2>
+            <div className="list">
+                {smurfList.map(smurf=> {
+                    return (
+                        <Smurf key={smurf.id} smurf={smurf}/>
+                    )
+                })}
+            </div>
+            
             <AddSmurfForm />
         </div>
         

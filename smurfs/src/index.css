@@ -2,18 +2,76 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  font-size: 62.5%;
+}
+h1 {
+  font-size: 2.5rem;
+}
+p {
+  font-size: 1rem;
+}
+a {
+  font-size: 1rem;
+  text-decoration: none;
+}
+div {
+  font-size: 1rem;
 }
 
-.list.container {
+.list-container {
+  text-align: center;
+}
+.list {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
   justify-content: space-between;
+  text-align: left;
 }
 .single-smurf {
-  background: rgb(22, 22, 192);
-  color: white;
+  background: rgb(55, 95, 202);
+  border-radius: 4px;
   padding: 10px;
+  margin: 10px 3px;
+  min-width: 70px;
+  color: white;
+  font-size: 1rem;
   width: 150px;
-  height: 150px;
-  margin: 10px auto;
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.add-form>*{
+  width: 200px;
+  border-radius: 6px;
+  border: 2px solid rgb(55, 95, 202);
+  margin: 3px auto;
+  padding: 5px;
+}
+.add-button {
+  width: 150px;
+  background: rgb(12, 119, 12);
+  color: white;
+  border: 0;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background: rgb(15, 155, 15);
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.edit-button, .delete-button {
+  background: white;
+  color: rgb(55, 95, 202);
+  padding: 5px;
+  border-radius: 6px;
+  cursor: pointer;
 }

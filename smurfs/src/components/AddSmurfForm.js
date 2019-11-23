@@ -6,8 +6,10 @@ import {connect} from "react-redux"
 const AddSmurfForm = ({addSmurf, newSmurf, handleChange}) => {
     return (
         <div className="form-container">
-            <form onSubmit={addSmurf}>
+            <h2>Add a new smurf to your island!</h2>
+            <form className="add-form" onSubmit={addSmurf}>
                 <input 
+                    className="name-box"
                     type="text"
                     placeholder="Name"
                     name="name"
@@ -15,6 +17,7 @@ const AddSmurfForm = ({addSmurf, newSmurf, handleChange}) => {
                     onChange={handleChange}
                 />
                 <input 
+                    className="age-box"
                     type="text"
                     placeholder="age"
                     name="age"
@@ -22,13 +25,14 @@ const AddSmurfForm = ({addSmurf, newSmurf, handleChange}) => {
                     onChange={handleChange}
                 />
                 <input 
+                    className="height-box"
                     type="text"
                     placeholder="height"
                     name="height"
                     value={newSmurf.height}
                     onChange={handleChange}
                 />
-                <button>Add Smurf</button>
+                <button className="add-button">Add Smurf</button>
             </form>
             
         </div>
