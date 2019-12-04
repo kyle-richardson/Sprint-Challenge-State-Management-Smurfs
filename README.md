@@ -23,10 +23,32 @@ In this challenge, you are to build a Smurfs village utilizing context or Redux 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] What problem does the context API help solve?
+
+  context API helps solve state management with multiple prop pushing components clogging and confusing where state is.
+
 - [ ] In your own words, describe `actions`, `reducers` and the `store` and their role in Redux. What does each piece do? Why is the store known as a 'single source of truth' in a redux application?
+
+actions - methods that take in items or commands that are intending to change the state of the app
+reducers - switch cases that take an action type and change the state accordingly
+store - home to initial and current state trees, what reducers change.  It is the single source of truth because it holds the current state and is able to update the virtual DOM because that is how React deals with change of state. This state is able to be represented in any stage or area of the app regardless of parent components, children, etc.
+
 - [ ] What is the difference between Application state and Component state? When would be a good time to use one over the other?
+
+application state is held in a store location to be used anywhere in the application.  component state is initialized at a specific component, and can only be used, in basic terms, within that component or its child components via prop drilling.
+
+application state stores like redux or context would be a good idea for complex state management or data/state that would need to be used throughout multiple areas of an app, or down via many different layers of components.
+
+component state is great for basic apps, or parts of the app where you are mapping through an array of objects and wish to deliver the individual objects to another component to render the data
+
 - [ ] Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
+
+redux-thunk is a middleware used to setup async clauses into the action-to-reducer sequence of events for redux.  What this means is when an initial action is called, the app can pause and perform other checks or methods that would either change the final action sent to reducers, or even stop the propogation of the action.
+
 - [ ] What is your favorite state management system you've learned and this sprint? Please explain why!
+
+redux, because, even though the boilerplate is extensive, and understanding the backend of it is a little complex, once it is setup, it is very easy to understand where all the state is, instead of looking for the useReducer hooks or the useContext hooks to determine where state is initialized and being held.
+
+
 
 ## Project Set Up
 
